@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-ink-line;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink text-paper font-body antialiased;
+    background-image: radial-gradient(circle at 15% 0%, rgba(184, 67, 47, 0.08), transparent 45%),
+      radial-gradient(circle at 85% 10%, rgba(63, 102, 89, 0.10), transparent 40%);
+  }
+  ::selection {
+    background: #b8432f;
+    color: #ece5d3;
+  }
+  :focus-visible {
+    outline: 2px solid #c9a44c;
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Signature element: the seal stamp — a rotated circular badge used for
+     episode numbers, ratings, and status markers, echoing Chinese ink seals. */
+  .seal {
+    @apply relative inline-flex items-center justify-center rounded-full
+      bg-seal text-paper font-mono font-medium;
+    transform: rotate(-6deg);
+    box-shadow: 0 0 0 1px rgba(236, 229, 211, 0.15), 0 6px 14px -6px rgba(184, 67, 47, 0.7);
+  }
+  .seal::after {
+    content: '';
+    @apply absolute inset-[3px] rounded-full;
+    border: 1px solid rgba(236, 229, 211, 0.35);
+  }
+
+  /* Vertical CJK-style rail label, used on hero + section edges */
+  .rail-label {
+    writing-mode: vertical-rl;
+    @apply font-display text-paper-dim tracking-widest2 text-xs select-none;
+    letter-spacing: 0.4em;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-widest2 text-gold;
+  }
+
+  .card-surface {
+    @apply bg-ink-card border border-ink-line rounded-sm;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .brush-underline {
+    background-image: linear-gradient(90deg, #b8432f, #c9a44c 60%, transparent);
+    height: 3px;
+  }
+}
